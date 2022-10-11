@@ -78,11 +78,15 @@ std::ostream& operator<<(std::ostream &flux, Node const& node) {
 // Iterator
 
 Node::Iterator Node::begin() {
-    return Node::Iterator(this);
+    return Node::Iterator(this->getHead());
+}
+
+Node::Iterator Node::begin(Node &beginNode) {
+    return Node::Iterator(&beginNode);
 }
 
 Node::Iterator Node::end() {
-    return Node::Iterator(this->getTail());
+    return Node::Iterator(nullptr);
 }
 
 Node::Iterator::Iterator(Node* node) {

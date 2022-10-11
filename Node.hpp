@@ -1,6 +1,7 @@
 #ifndef NODE
 #define NODE
 
+#include <iostream>
 #include <ostream>
 
 class Node {
@@ -33,6 +34,7 @@ class Node {
         Node(const int data);
 
         Iterator begin();
+        Iterator begin(Node &beginNode);
         Iterator end();
 
         Node* getNext() const;

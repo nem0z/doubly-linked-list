@@ -14,7 +14,7 @@ int main() {
     // cout << n1.getNext() << " : " << &n2 << " : " << n1.getTail() << endl;
     // cout << n2.getPrev() << " : " << &n1 << " : " << n2.getHead() << endl;
 
-    for (Node::Iterator iter = n1.begin(); iter != n1.end(); ++iter)
+    for (Node::Iterator iter = n2.begin(n2); iter != n2.end(); ++iter)
         cout << *iter.getIterNode() << endl;
 
     return 0;
