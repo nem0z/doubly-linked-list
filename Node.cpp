@@ -1,7 +1,7 @@
 #include "Node.hpp"
 
 // Constructor
-Node::Node(int data) {
+Node::Node(const int data) {
     Data = data;
     Next = nullptr;
     Prev = nullptr;
@@ -66,4 +66,47 @@ void Node::insertBefore(Node* const node) {
     node->setPrev(this->Prev);
     node->setNext(this);
     this->setPrev(node);
+}
+
+// Overload operators
+
+std::ostream& operator<<(std::ostream &flux, Node const& node) {
+    flux << &node << " => " << node.getData();
+    return flux;
+}
+
+// Iterator
+
+Node::Iterator Node::begin() {
+    return Node::Iterator(this);
+}
+
+Node::Iterator Node::end() {
+    return Node::Iterator(this->getTail());
+}
+
+Node::Iterator::Iterator(Node* node) {
+    IterNode = node;
+}
+
+Node* Node::Iterator::getIterNode() {
+    return this->IterNode;
+}
+
+Node::Iterator& Node::Iterator::operator++() {
+    this->IterNode = this->IterNode->getNext();
+    return *this;
+}
+
+//Iterator Node::Iteartor::operator++(int) {iterator retval = *this; ++(*this); return retval;}
+bool Node::Iterator::operator==(Node::Iterator other) const {
+    return this->IterNode == other.getIterNode();
+}
+
+bool Node::Iterator::operator!=(Node::Iterator other) const {
+    return !(*this == other);
+}
+
+Node* Node::Iterator::operator*() {
+    return this->IterNode;
 }
