@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Node.hpp"
+#include "List.hpp"
 
 using namespace std;
 
@@ -7,15 +7,18 @@ int main() {
     Node n1 = Node(5);
     Node n2 = Node(6);
     Node n3 = Node(7);
-    n1.insertAfter(&n2);
-    n2.insertAfter(&n3);
+    
+    List list = List(&n1);
+    list.push(&n2);
+    list.push(&n3);
 
-    // cout << n1.getData() << endl;
-    // cout << n1.getNext() << " : " << &n2 << " : " << n1.getTail() << endl;
-    // cout << n2.getPrev() << " : " << &n1 << " : " << n2.getHead() << endl;
-
-    for (Node::Iterator iter = n2.begin(n2); iter != n2.end(); ++iter)
+    for (List::Iterator iter = list.start(list.getTail()); iter != list.end(); --iter)
         cout << *iter.getIterNode() << endl;
+
+    for (List::Iterator iter = list.begin(); iter != list.end(); ++iter)
+        cout << *iter.getIterNode() << endl;
+
+    cout << list.getHead() << " : " <<list.getTail() << endl;
 
     return 0;
 }

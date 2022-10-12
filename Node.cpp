@@ -34,24 +34,24 @@ void Node::setData(const int data) {
 }
 
 // Head and tail getters
-Node* Node::getHead() const {
+Node* Node::getHead() {
     Node* head = this->Prev;
     while(head != nullptr) {
         if(head->getPrev() == nullptr)
             return head;
         head = head->getPrev();
     }
-    return nullptr;
+    return this;
 }
 
-Node* Node::getTail() const {
+Node* Node::getTail() {
     Node* tail = this->Next;
     while(tail != nullptr) {
         if(tail->getNext() == nullptr)
             return tail;
         tail = tail->getNext();
     }
-    return nullptr;
+    return this;
 }
 
 // Insert methods
@@ -73,44 +73,4 @@ void Node::insertBefore(Node* const node) {
 std::ostream& operator<<(std::ostream &flux, Node const& node) {
     flux << &node << " => " << node.getData();
     return flux;
-}
-
-// Iterator
-
-Node::Iterator Node::begin() {
-    return Node::Iterator(this->getHead());
-}
-
-Node::Iterator Node::begin(Node &beginNode) {
-    return Node::Iterator(&beginNode);
-}
-
-Node::Iterator Node::end() {
-    return Node::Iterator(nullptr);
-}
-
-Node::Iterator::Iterator(Node* node) {
-    IterNode = node;
-}
-
-Node* Node::Iterator::getIterNode() {
-    return this->IterNode;
-}
-
-Node::Iterator& Node::Iterator::operator++() {
-    this->IterNode = this->IterNode->getNext();
-    return *this;
-}
-
-//Iterator Node::Iteartor::operator++(int) {iterator retval = *this; ++(*this); return retval;}
-bool Node::Iterator::operator==(Node::Iterator other) const {
-    return this->IterNode == other.getIterNode();
-}
-
-bool Node::Iterator::operator!=(Node::Iterator other) const {
-    return !(*this == other);
-}
-
-Node* Node::Iterator::operator*() {
-    return this->IterNode;
 }
