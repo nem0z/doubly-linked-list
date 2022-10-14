@@ -13,10 +13,7 @@ int main() {
     list.push(&n3);
 
     for (List::Iterator iter = list.start(list.getTail()); iter != list.end(); --iter)
-        cout << *iter.getIterNode() << endl;
-
-    for (List::Iterator iter = list.begin(); iter != list.end(); ++iter)
-        cout << *iter.getIterNode() << endl;
+        cout << *(*iter) << endl;
 
     cout << list.getHead() << " : " <<list.getTail() << endl;
 

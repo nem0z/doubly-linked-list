@@ -43,7 +43,5 @@ class List {
         void push(Node* node);
 };
 
-std::ostream& operator<<(std::ostream &flux, Node const& node);
-
 #endif
 
